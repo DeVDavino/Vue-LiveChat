@@ -1,10 +1,9 @@
 <template>
     <div>
         <form @submit.prevent="handleSubmit">
-            <input type="text" required placeholder="display name" v-model="displayName">
             <input type="email" required placeholder="email" v-model="email">
             <input type="password" required placeholder="password" v-model="password">
-            <button>Sign up</button>
+            <button>Log in</button>
         </form>
     </div>
     
@@ -16,18 +15,16 @@ import { ref } from 'vue';
 export default {
 
     setup(){
-        // refs, tracking what user types in the different inputs fields
-        const displayName = ref('');
+        //refs, are used to track the data that the user fills into the input field of the form
         const email = ref('');
         const password = ref('');
 
         // methods
         const handleSubmit = () => {
-            console.log(displayName.value, email.value, password.value);
+            console.log(email.value, password.value);
         }
 
         return {
-            displayName,
             email,
             password,
             handleSubmit
