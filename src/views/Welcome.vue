@@ -21,6 +21,7 @@
 <script>
 import SignupForm from '@/components/SignupForm.vue'
 import LoginForm from '@/components/LoginForm.vue'
+import usesignup from '@/composables/useSignup'
 import { ref } from 'vue';
 
     export default {
@@ -33,11 +34,12 @@ import { ref } from 'vue';
 
         setup(){
             const showLogin = ref(true);
+            // signup compsble that handles the signup logic
+            const { error, signup } = usesignup();
 
             return { showLogin }
         },
     }
-
 
 </script>
 
@@ -74,6 +76,14 @@ import { ref } from 'vue';
         padding: 10px;
         border: none;
         margin: 20px auto;
+        font-weight: bold;
+    }
+
+    .welcome button:hover{
+        cursor: pointer;
+        transform: scale(1.1);
+        margin: 20px auto;
+        padding: 10px;
     }
 
     .welcome span{

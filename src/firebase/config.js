@@ -1,5 +1,6 @@
 import firebase from 'firebase/app';
 import 'firebase/firestore';
+import 'firebase/auth'
 
 const firebaseConfig = {
     apiKey: "AIzaSyCF5kwowImgUWTVaJCQmyC-by2tdteHPFo",
@@ -13,10 +14,13 @@ const firebaseConfig = {
 // init firebase
 firebase.initializeApp(firebaseConfig);
 
+// init authentication serivce
+const projectAuth = firebase.auth();
+
 // init firestore service
 const projectFirestore = firebase.firestore();
 // timestamp for the chat events
 const timespamp = firebase.firestore.FieldValue.serverTimestamp();
 
 // exporting firestore service and timestamp
-export {projectFirestore, timespamp};
+export {projectFirestore, projectAuth, timespamp};
