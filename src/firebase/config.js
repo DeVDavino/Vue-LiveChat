@@ -20,7 +20,7 @@ const projectAuth = firebase.auth();
 // init firestore service
 const projectFirestore = firebase.firestore();
 // timestamp for the chat events
-const timespamp = firebase.firestore.FieldValue.serverTimestamp();
+const timestamp = firebase.firestore.FieldValue.serverTimestamp();
 
 // exporting firestore service and timestamp
-export {projectFirestore, projectAuth, timespamp};
+export {projectFirestore, projectAuth, timestamp};

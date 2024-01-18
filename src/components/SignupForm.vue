@@ -4,6 +4,8 @@
             <input type="text" required placeholder="display name" v-model="displayName">
             <input type="email" required placeholder="email" v-model="email">
             <input type="password" required placeholder="password" v-model="password">
+            <!-- if there is an error the div class will be displayed, else nothing at all NULL -->
+            <div class="error">{{ error }}</div>
             <button>Sign up</button>
         </form>
     </div>
@@ -16,7 +18,7 @@ import { ref } from 'vue';
 
 export default {
 
-    setup(){
+    setup(props, context){
 
         const { error, signup } = useSignup();
 
@@ -29,14 +31,17 @@ export default {
         const handleSubmit =  async () => {
             await  signup(email.value, password.value, displayName.value);
             // only going to run if there is no error
-            console.log('user signed up');
+            if(!error.value) {
+                context.emit('signup');
+            }
         }
 
         return {
             displayName,
             email,
             password,
-            handleSubmit
+            handleSubmit,
+            error,
         }
     }
 };

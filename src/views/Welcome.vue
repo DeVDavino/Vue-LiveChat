@@ -5,12 +5,12 @@
         <h1>Welcome</h1>
         <div v-if="showLogin">
             <h2>Log in</h2>
-            <LoginForm />
+            <LoginForm @login="enterChat"/>
             <p>No acoount yet? <span @click="showLogin = false">sign-up</span> instead</p>
         </div>
         <div v-else>
             <h2>Sign up</h2>
-            <SignupForm />
+            <SignupForm @signup="enterChat"/>
             <p>Already registered? <span @click="showLogin = true">log-in</span> instead</p>
         </div>
 
@@ -22,6 +22,7 @@
 import SignupForm from '@/components/SignupForm.vue'
 import LoginForm from '@/components/LoginForm.vue'
 import usesignup from '@/composables/useSignup'
+import { useRouter }   from 'vue-router'
 import { ref } from 'vue';
 
     export default {
@@ -36,8 +37,14 @@ import { ref } from 'vue';
             const showLogin = ref(true);
             // signup compsble that handles the signup logic
             const { error, signup } = usesignup();
+            // router that will be used to redirect the user on succesful login or sign up, to the chatroom
+            const router = useRouter();
 
-            return { showLogin }
+            const enterChat = () => {
+                router.push({name: 'Chatroom'})
+            }
+
+            return { showLogin, enterChat }
         },
     }
 
